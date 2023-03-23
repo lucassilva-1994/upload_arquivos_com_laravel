@@ -25,7 +25,7 @@ class UsersController extends Controller
         $credentials = ['email' => $request->email,'password' => $request->password];
         if(Auth::attempt($credentials)){
             $user = User::select('*')->where(['email'=>$request->email])->first();
-            session()->put(['name'=>$user->name,'email'=>$user->email]);
+            session()->put(['id_user'=> $user->id,'name'=>$user->name,'email'=>$user->email]);
             return to_route('signin')->with('success', 'Usuário autenticado com sucesso.');
         }
         return to_route('signin')->with('error','Falha ao autenticar usuário.');
