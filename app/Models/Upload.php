@@ -13,6 +13,10 @@ class Upload extends Model
 
     protected $table="uploads";
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function getCreatedAtAttribute() {
         return Date('d/m/Y H:i:s', strtotime($this->attributes['created_at']));
     }

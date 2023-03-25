@@ -28,7 +28,7 @@
             <form action="{{ route('upload.create') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-2">
-                    <label for="title" class="form-label">Descrição:</label>
+                    <label for="title" class="form-label">Título:</label>
                     <input type="text" class="form-control" id="title" name="title" placeholder="Título"
                         value="{{ old('title') }}" autocomplete="off" />
                 </div>
