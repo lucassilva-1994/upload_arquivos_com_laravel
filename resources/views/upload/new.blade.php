@@ -28,13 +28,13 @@
             <form action="{{ route('upload.create') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-2">
-                    <label for="description" class="form-label">Descrição:</label>
-                    <input type="text" class="form-control" id="description" name="description" placeholder="Descrição"
-                        value="{{ old('description') }}" autocomplete="off" />
+                    <label for="title" class="form-label">Descrição:</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Título"
+                        value="{{ old('title') }}" autocomplete="off" />
                 </div>
                 <div class="mb-2">
                     <label for="files" class="form-label">Arquivos:</label>
-                    <input type="file" class="form-control" id="files" name="files[]" multiple />
+                    <input type="file" class="form-control" id="files" name="files"/>
                 </div>
                 <div class="mb-3 mt-3">
                     <div class="row">

@@ -11,10 +11,10 @@ return new class extends Migration
     {
         Schema::create($this->_table, function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('description',100);
+            $table->string('title',100)->nullable();
             $table->string('name',100);
             $table->string('path',100);
-            $table->enum('status',['ACEITO','REJEITADO','PENDENTE'])->default('PENDENTE');
+            $table->enum('status',['APROVADO','REJEITADO','PENDENTE'])->default('PENDENTE');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

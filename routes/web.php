@@ -14,9 +14,12 @@ Route::controller(UsersController::class)->group(function(){
 Route::middleware('user')->group(function(){
     Route::get('/signout', [UsersController::class,'signOut'])->name('signout');
     Route::controller(UploadsController::class)->group(function(){
-        Route::get('/upload','list')->name('upload.list');
+        Route::get('/upload','all')->name('upload.all');
+        Route::get('/upload/list','list')->name('upload.list');
         Route::get('/upload/new','new')->name('upload.new');
         Route::post('/upload/create','create')->name('upload.create');
+        Route::put('/upload/update/{id}','update')->name('upload.update');
+        Route::put('/upload/updatestatus/{id}','updateStatus')->name('upload.updatestatus');
         Route::delete('/upload/delete/{id}','delete')->name('upload.delete');
     });
 });

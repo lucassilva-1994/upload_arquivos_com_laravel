@@ -11,12 +11,13 @@
         <nav class="pt-1" style="color: white;background-color: #0f5132;">
             <div class="container d-flex flex-wrap">
                 <ul class="nav me-auto">
-                    <li class="nav-item nav-link link-light px-2">SGA</li>
-                    <li class="nav-item"><a href="{{ route('upload.list') }}" class="nav-link link-light px-2">Arquivos</a></li>
+                    <li class="nav-item nav-link link-light px-2"><h4>SGA</h4></li>
+                    <li class="nav-item"><a href="{{ route('upload.all') }}" class="nav-link link-light px-2">Arquivos</a></li>
                     <li class="nav-item"><a href="{{ route('upload.new') }}" class="nav-link link-light px-2">Novo arquivo</a></li>
+                    <li class="nav-item"><a href="{{ route('upload.list') }}" class="nav-link link-light px-2">Seus arquivos</a></li>
                 </ul>
                 <ul class="nav">
-                    <li class="nav-item nav-link link-light px-2"><i class="bi bi-person-circle"></i> {{ session('name'); }}</li>
+                    <li class="nav-item nav-link link-light px-2"><i class="bi bi-person-circle"></i> {{ ucwords(session('name')); }}</li>
                     <li class="nav-item"><a href="{{ route('signout') }}" class="nav-link link-light px-2"><i class="bi bi-box-arrow-in-right"></i> Sair</a></li>
                 </ul>
             </div>
