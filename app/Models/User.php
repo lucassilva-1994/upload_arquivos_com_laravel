@@ -14,4 +14,13 @@ class User extends Authenticatable
         'password',
     ];
     protected $table = "users";
+
+    public static function userCreate(array $data){
+        $data['password'] = bcrypt($data['cpassword']);
+        $user = User::create($data);
+        if($user){
+            return to_route('signin')->with('success', 'Usuário cadastrado com sucesso.');
+        }
+        return redirect()->back()->with('error', 'Falha ao realizar cadastro.');
+    }
 }

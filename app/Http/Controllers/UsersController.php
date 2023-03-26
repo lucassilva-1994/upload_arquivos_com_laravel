@@ -33,14 +33,7 @@ class UsersController extends Controller
 
     public function create(UserRequest $request)
     {
-        $data = $request->except(['_token', 'ccpassword']);
-        $data['password'] = bcrypt($data['cpassword']);
-        $user = User::create($data);
-        if ($user) {
-            return to_route('signin')->with('success', 'Usuário cadastrado com sucesso.');
-        } else {
-            return redirect()->back()->with('error', 'Falha ao realizar cadastro.');
-        }
+        return User::userCreate($request->except(['_token', 'ccpassword']));
     }
 
     public function signOut(){
