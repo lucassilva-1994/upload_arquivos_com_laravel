@@ -13,7 +13,7 @@ class AuthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email:rfc,dns',
+            'email' => 'required|email:rfc,dns|exists:users',
             'password' => 'required'
         ];
     }
@@ -23,6 +23,7 @@ class AuthRequest extends FormRequest
         return [
             'email.required' => 'O e-mail é obrigatório.',
             'email.email' => 'Informe um e-mail válido.',
+            'email.exists'=>'Esse email não está cadastrado.',
             'password' => 'A senha é obrigatório.'
         ];
     }

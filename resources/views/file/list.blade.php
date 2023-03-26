@@ -36,11 +36,11 @@
                             <span class="col-sm-12"><strong>N° do registro: </strong>{{ $file->id }}</span>
                         </div>
                         <div class="row">
-                            <span class="col-sm-6 list-inline">
+                            <span class="col-sm-12 col-md-6 col-lg-6 mt-2 list-inline">
                                 <strong class="list-inline-item">Analisado por:</strong>
                                 {{ $file->analist_name == '' ? 'Sem análise.' : $file->analist_name }}
                             </span>
-                            <span class="col-sm-6">
+                            <span class="col-sm-12 col-md-6 col-lg-6 mt-2">
                                 <strong>Status: </strong>
                                 @if ($file->status == 'PENDENTE')
                                     <span class="text-warning">AGUARDANDO ANALISE</span>
@@ -52,14 +52,14 @@
                             </span>
                         </div>
                         <div class="row">
-                            <span class="col-sm-6">
+                            <span class="col-sm-12 col-md-6 col-lg-6 mt-2">
                                 <strong>Arquivo:</strong>
                                 <a href="{{ url('storage/' . $file->path) }}" target="_blank"
                                     class="btn btn-primary btn-sm text-decoration-none">Ver arquivo</a>
                                 <a href="{{ route('file.download', $file->id) }}"
                                     class="btn btn-secondary btn-sm text-decoration-none">Download</a>
                             </span>
-                            <span class="col-sm-6 list-inline">
+                            <span class="col-sm-12 col-md-6 col-lg-6 list-inline mt-2">
                                 <strong class="list-inline-item">Ações: </strong>
                                 <form action="{{ route('file.delete', $file->id) }}" method="post"
                                     class="list-inline-item">

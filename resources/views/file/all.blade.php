@@ -35,26 +35,26 @@
                             <span class="col-sm-12"><strong>N° do registro: </strong>{{ $file->id }}</span>
                         </div>
                         <div class="row">
-                            <span class="col-sm-6"><strong>Titulo:
+                            <span class="col-sm-12 col-md-6 col-lg-6 mt-2"><strong>Titulo:
                                 </strong>{{ $file->title != '' ? $file->title : 'Sem título' }}</span>
-                            <span class="col-sm-6"><strong>Email: </strong><a href="mailto:{{ $file->user->email }}"
+                            <span class="col-sm-12 col-md-6 col-lg-6 mt-2"><strong>Email: </strong><a href="mailto:{{ $file->user->email }}"
                                     class="text-decoration-none">{{ $file->user->email }}</a></span>
                         </div>
                         <div class="row">
-                            <span class="col-sm-6">
+                            <span class="col-sm-12 col-md-6 col-lg-6 mt-2">
                                 <strong>Arquivo:</strong>
                                 <a href="{{ url('storage/' . $file->path) }}" target="_blank"
                                     class="btn btn-primary btn-sm text-decoration-none">Ver arquivo</a>
                                 <a href="{{ route('file.download', $file->id) }}"
                                     class="btn btn-secondary btn-sm text-decoration-none">Download</a>
                             </span>
-                            <span class="col-sm-6">
+                            <span class="col-sm-12 col-md-6 col-lg-6 list-inline mt-2">
                                 <strong>{{ $file->status == 'PENDENTE' ? '' : 'Status:' }} </strong>
                                 @if ($file->status == 'PENDENTE')
-                                    <form action="{{ route('file.updatestatus', $file->id) }}" method="post">
+                                    <strong class="list-inline-item">Ações:</strong>
+                                    <form action="{{ route('file.updatestatus', $file->id) }}" method="post" class="list-inline-item">
                                         @csrf
                                         @method('put')
-                                        <span><strong>Ações:</strong></span>
                                         <input type="hidden" name="analist_name" value="{{ session('name') }}"/>
                                         <button type="submit" name="status" value="APROVADO"
                                             class="btn btn-success btn-sm">Aprovar</button>
