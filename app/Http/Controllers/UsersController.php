@@ -26,7 +26,7 @@ class UsersController extends Controller
         if(Auth::attempt($credentials)){
             $user = User::select('*')->where(['email'=>$request->email])->first();
             session()->put(['id_user'=> $user->id,'name'=>$user->name,'email'=>$user->email]);
-            return to_route('upload.all');
+            return to_route('file.all');
         }
         return to_route('signin')->with('error','Falha ao autenticar usuário.');
     }

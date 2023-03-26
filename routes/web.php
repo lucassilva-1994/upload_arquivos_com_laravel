@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\UploadsController;
+use App\Http\Controllers\FilesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 
@@ -13,14 +13,13 @@ Route::controller(UsersController::class)->group(function(){
 
 Route::middleware('user')->group(function(){
     Route::get('/signout', [UsersController::class,'signOut'])->name('signout');
-    Route::controller(UploadsController::class)->group(function(){
-        Route::get('/upload','all')->name('upload.all');
-        Route::get('/upload/list','list')->name('upload.list');
-        Route::get('/upload/new','new')->name('upload.new');
-        Route::get('/upload/download/{id}','download')->name('upload.download');
-        Route::post('/upload/create','create')->name('upload.create');
-        Route::put('/upload/update/{id}','update')->name('upload.update');
-        Route::put('/upload/updatestatus/{id}','updateStatus')->name('upload.updatestatus');
-        Route::delete('/upload/delete/{id}','delete')->name('upload.delete');
+    Route::controller(FilesController::class)->group(function(){
+        Route::get('/file','all')->name('file.all');
+        Route::get('/file/list','list')->name('file.list');
+        Route::get('/file/new','new')->name('file.new');
+        Route::get('/file/download/{id}','download')->name('file.download');
+        Route::post('/file/create','create')->name('file.create');
+        Route::put('/file/updatestatus/{id}','updateStatus')->name('file.updatestatus');
+        Route::delete('/file/delete/{id}','delete')->name('file.delete');
     });
 });

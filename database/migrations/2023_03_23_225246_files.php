@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public string $_table = "uploads";
+    public string $_table = "files";
     public function up(): void
     {
         Schema::create($this->_table, function(Blueprint $table){

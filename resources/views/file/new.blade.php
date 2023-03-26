@@ -1,4 +1,4 @@
-@extends('upload.layout')
+@extends('file.layout')
 
 @section('title', 'Adicionar arquivos')
 @section('content')
@@ -25,7 +25,7 @@
                 </div>
             @endif
             <h2 class="text-left mb-3">Novo arquivo</h2>
-            <form action="{{ route('upload.create') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('file.create') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-2">
                     <label for="title" class="form-label">Título:</label>
@@ -42,7 +42,7 @@
                             <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Salvar</button>
                         </div>
                         <div class="col-sm-6 mb-3 d-grid">
-                            <a class="btn btn-outline-danger" href="{{ route('upload.list') }}"><i class="bi bi-reply"></i>
+                            <a class="btn btn-outline-danger" href="{{ route('file.list') }}"><i class="bi bi-reply"></i>
                                 Voltar</a>
                         </div>
                     </div>

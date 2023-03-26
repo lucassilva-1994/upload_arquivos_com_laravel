@@ -2,9 +2,9 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Storage;
 
-class Upload extends Model
+class File extends Model
 {
     protected $fillable = [
         "title",
@@ -13,7 +13,7 @@ class Upload extends Model
         "user_id"
     ];
 
-    protected $table="uploads";
+    protected $table="files";
 
     public function user():BelongsTo {
         return $this->belongsTo(User::class);
@@ -25,5 +25,12 @@ class Upload extends Model
 
     public function getUpdatedAtAttribute() {
         return Date('d/m/Y H:i:s', strtotime($this->attributes['updated_at']));
+    }
+
+    public static function download(int $id){
+        $file = File::find($id);
+        if($file){
+           return Storage::download($file->path, $file->name,[]);
+        }
     }
 }

@@ -1,4 +1,4 @@
-@extends('upload.layout')
+@extends('file.layout')
 
 @section('title', 'Todos os documentos')
 @section('content')
@@ -25,33 +25,33 @@
                 </div>
             @endif
             <h3>Todos os arquivos</h3>
-            @foreach ($uploads as $upload)
+            @foreach ($files as $file)
                 <div class="card mb-3">
                     <div class="card-header">
-                        <h5>Adicionado por: {{ $upload->user->name }}</h5>
+                        <h5>Adicionado por: {{ $file->user->name }}</h5>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <span class="col-sm-12"><strong>N° do registro: </strong>{{ $upload->id }}</span>
+                            <span class="col-sm-12"><strong>N° do registro: </strong>{{ $file->id }}</span>
                         </div>
                         <div class="row">
                             <span class="col-sm-6"><strong>Titulo:
-                                </strong>{{ $upload->title != '' ? $upload->title : 'Sem título' }}</span>
-                            <span class="col-sm-6"><strong>Email: </strong><a href="mailto:{{ $upload->user->email }}"
-                                    class="text-decoration-none">{{ $upload->user->email }}</a></span>
+                                </strong>{{ $file->title != '' ? $file->title : 'Sem título' }}</span>
+                            <span class="col-sm-6"><strong>Email: </strong><a href="mailto:{{ $file->user->email }}"
+                                    class="text-decoration-none">{{ $file->user->email }}</a></span>
                         </div>
                         <div class="row">
                             <span class="col-sm-6">
                                 <strong>Arquivo:</strong>
-                                <a href="{{ url('storage/' . $upload->path) }}" target="_blank"
+                                <a href="{{ url('storage/' . $file->path) }}" target="_blank"
                                     class="btn btn-primary btn-sm text-decoration-none">Ver arquivo</a>
-                                <a href="{{ route('upload.download', $upload->id) }}"
+                                <a href="{{ route('file.download', $file->id) }}"
                                     class="btn btn-secondary btn-sm text-decoration-none">Download</a>
                             </span>
                             <span class="col-sm-6">
-                                <strong>{{ $upload->status == 'PENDENTE' ? '' : 'Status:' }} </strong>
-                                @if ($upload->status == 'PENDENTE')
-                                    <form action="{{ route('upload.updatestatus', $upload->id) }}" method="post">
+                                <strong>{{ $file->status == 'PENDENTE' ? '' : 'Status:' }} </strong>
+                                @if ($file->status == 'PENDENTE')
+                                    <form action="{{ route('file.updatestatus', $file->id) }}" method="post">
                                         @csrf
                                         @method('put')
                                         <span><strong>Ações:</strong></span>
@@ -61,7 +61,7 @@
                                         <button type="submit" name="status" value="REJEITADO"
                                             class="btn btn-danger btn-sm">Rejeitar</button>
                                     </form>
-                                @elseif($upload->status == 'APROVADO')
+                                @elseif($file->status == 'APROVADO')
                                     <span class="text-success">APROVADO</span>
                                 @else
                                     <span class="text-danger">REJEITADO</span>
@@ -71,16 +71,16 @@
                     </div>
                     <div class="card-footer">
                         <div class="row">
-                            <span class="col-sm-6"><strong>Cadastrado em:</strong> {{ $upload->created_at }}
+                            <span class="col-sm-6"><strong>Cadastrado em:</strong> {{ $file->created_at }}
                             </span>
-                            <span class="col-sm-6"><strong>Atualizado em:</strong> {{ $upload->updated_at }}
+                            <span class="col-sm-6"><strong>Atualizado em:</strong> {{ $file->updated_at }}
                             </span>
                         </div>
                     </div>
                 </div>
             @endforeach
 
-            @if ($uploads->isEmpty())
+            @if ($files->isEmpty())
                 <div class="card">
                     <div class="card-header">
                         <h5>Sem arquivos cadastrados</h5>

@@ -1,71 +1,68 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UploadRequest;
+use App\Http\Requests\FileRequest;
+use App\Models\File;
 use Illuminate\Http\Request;
-use App\Models\Upload;
 use Illuminate\Support\Facades\Storage;
 
-class UploadsController extends Controller
+class FilesController extends Controller
 {
     //Listar todos os documentos
     public function all(){
-        $uploads = Upload::where('user_id','!=',session('id_user'))
+        $files = File::where('user_id','!=',session('id_user'))
         ->orderByDesc('status')
         ->orderByDesc('id')
         ->get();
-        return view('upload.all', compact('uploads'));
+        return view('file.all', compact('files'));
     }
 
     //Listar somente documentos do usuário logado.
     public function list(){
-        $uploads = Upload::where('user_id','=',session('id_user'))
+        $files = File::where('user_id','=',session('id_user'))
         ->orderByDesc('id')
         ->get();
-        return view('upload.list', compact('uploads'));
+        return view('file.list', compact('files'));
     }
 
     //Carregar a view para cadastrar um novo documento.
     public function new(){
-        return view('upload.new');
+        return view('file.new');
     }
 
     //Registrar novo documento.
-    public function create(UploadRequest $request){
+    public function create(FileRequest $request){
         $file = $request->file('files');
         $data['title'] = $request->title;
         $data['name'] = $file->getClientOriginalName();
         $data['path'] = $file->store(session('email'));
         $data['user_id'] = session('id_user');
-        $upload = Upload::create($data);
-        if($upload){
+        $file = File::create($data);
+        if($file){
             return redirect()->back()->with('success',"Documento salvo com sucesso.");
         }
         return redirect()->back()->with('error','Falha ao registrar documento.');
     }
 
     public function download($id){
-        $upload = Upload::find($id);
-        if($upload){
-            return Storage::download($upload->path, $upload->name,[]);
-        }
+        return File::download($id);
     }
 
     //Método que vai atualizar status de PENDENTE para ACEITO ou REJEITADO
     public function updateStatus(int $id, Request $request){
-        $upload = Upload::where('id',$id)
+        $file = File::where('id',$id)
         ->update(['status'=>$request->status,'analist_name'=>$request->analist_name]);
-        if($upload){
+        if($file){
             return redirect()->back()->with('success','Atualizado com sucesso.');
         }
         return redirect()->back()->with('error','Falha ao atualizar registro.');
     }
 
     public function delete($id){
-        $upload = Upload::find($id);
-        if($upload){
-            Storage::delete($upload->path);
-            $upload->delete($id);
+        $file = File::find($id);
+        if($file){
+            Storage::delete($file->path);
+            $file->delete($id);
             return redirect()->back()->with('success','Registro excluido com sucesso.');
         }
         return redirect()->back()->with('error', 'Falha ao remover registro.');

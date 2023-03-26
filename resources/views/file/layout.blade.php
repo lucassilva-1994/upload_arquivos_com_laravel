@@ -12,9 +12,9 @@
             <div class="container d-flex flex-wrap">
                 <ul class="nav me-auto">
                     <li class="nav-item nav-link link-light px-2"><h4>SGA</h4></li>
-                    <li class="nav-item"><a href="{{ route('upload.all') }}" class="nav-link link-light px-2">Arquivos</a></li>
-                    <li class="nav-item"><a href="{{ route('upload.new') }}" class="nav-link link-light px-2">Novo arquivo</a></li>
-                    <li class="nav-item"><a href="{{ route('upload.list') }}" class="nav-link link-light px-2">Seus arquivos</a></li>
+                    <li class="nav-item"><a href="{{ route('file.all') }}" class="nav-link link-light px-2">Arquivos</a></li>
+                    <li class="nav-item"><a href="{{ route('file.new') }}" class="nav-link link-light px-2">Novo arquivo</a></li>
+                    <li class="nav-item"><a href="{{ route('file.list') }}" class="nav-link link-light px-2">Seus arquivos</a></li>
                 </ul>
                 <ul class="nav">
                     <li class="nav-item nav-link link-light px-2"><i class="bi bi-person-circle"></i> {{ ucwords(session('name')); }}</li>
