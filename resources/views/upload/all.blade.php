@@ -44,7 +44,9 @@
                             <span class="col-sm-6">
                                 <strong>Arquivo:</strong>
                                 <a href="{{ url('storage/' . $upload->path) }}" target="_blank"
-                                    class="link-primary text-decoration-none">Ver arquivo</a>
+                                    class="btn btn-primary btn-sm text-decoration-none">Ver arquivo</a>
+                                <a href="{{ route('upload.download', $upload->id) }}"
+                                    class="btn btn-secondary btn-sm text-decoration-none">Download</a>
                             </span>
                             <span class="col-sm-6">
                                 <strong>{{ $upload->status == 'PENDENTE' ? '' : 'Status:' }} </strong>
@@ -53,10 +55,11 @@
                                         @csrf
                                         @method('put')
                                         <span><strong>Ações:</strong></span>
+                                        <input type="hidden" name="analist_name" value="{{ session('name') }}"/>
                                         <button type="submit" name="status" value="APROVADO"
-                                            class="btn btn-success btn-sm">APROVAR</button>
+                                            class="btn btn-success btn-sm">Aprovar</button>
                                         <button type="submit" name="status" value="REJEITADO"
-                                            class="btn btn-danger btn-sm">REJEITAR</button>
+                                            class="btn btn-danger btn-sm">Rejeitar</button>
                                     </form>
                                 @elseif($upload->status == 'APROVADO')
                                     <span class="text-success">APROVADO</span>

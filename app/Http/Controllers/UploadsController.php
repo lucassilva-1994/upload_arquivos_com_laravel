@@ -44,9 +44,17 @@ class UploadsController extends Controller
         return redirect()->back()->with('error','Falha ao registrar documento.');
     }
 
+    public function download($id){
+        $upload = Upload::find($id);
+        if($upload){
+            return Storage::download($upload->path, $upload->name,[]);
+        }
+    }
+
     //Método que vai atualizar status de PENDENTE para ACEITO ou REJEITADO
     public function updateStatus(int $id, Request $request){
-        $upload = Upload::where('id',$id)->update(['status'=>$request->status]);
+        $upload = Upload::where('id',$id)
+        ->update(['status'=>$request->status,'analist_name'=>$request->analist_name]);
         if($upload){
             return redirect()->back()->with('success','Atualizado com sucesso.');
         }

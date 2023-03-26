@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('title',30)->nullable();
             $table->string('name',100);
             $table->string('path',100);
+            $table->string('analist_name',100)->nullable();
             $table->enum('status',['APROVADO','REJEITADO','PENDENTE'])->default('PENDENTE');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

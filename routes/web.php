@@ -17,6 +17,7 @@ Route::middleware('user')->group(function(){
         Route::get('/upload','all')->name('upload.all');
         Route::get('/upload/list','list')->name('upload.list');
         Route::get('/upload/new','new')->name('upload.new');
+        Route::get('/upload/download/{id}','download')->name('upload.download');
         Route::post('/upload/create','create')->name('upload.create');
         Route::put('/upload/update/{id}','update')->name('upload.update');
         Route::put('/upload/updatestatus/{id}','updateStatus')->name('upload.updatestatus');

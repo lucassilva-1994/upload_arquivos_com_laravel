@@ -54,7 +54,8 @@
                         </div>
                         <div class="row">
                             <span class="col-sm-6 list-inline">
-                                <strong class="list-inline-item">Avaliado por:</strong> Sem nome
+                                <strong class="list-inline-item">Analisado por:</strong>
+                                {{ $upload->analist_name == "" ? "Sem anlise." : $upload->analist_name }}
                             </span>
                             <span class="col-sm-6 list-inline">
                                 <strong class="list-inline-item">Ações: </strong>
@@ -66,9 +67,10 @@
                                 <form  action="{{ route('upload.updatestatus', $upload->id) }}" method="post" class="list-inline-item">
                                     @csrf
                                     @method('put')
+                                    <input type="hidden" name="analist_name" value=""/>
                                     <button class="btn btn-primary btn-sm"
                                     name="status" value="PENDENTE"
-                                        {{ $upload->status == "APROVADO" || $upload->status == "PENDENTE" ? "disabled" : "" }}>Reenviar para analise</button>
+                                        {{ $upload->status == "APROVADO" || $upload->status == "PENDENTE" ? "disabled" : "" }}>Reenviar para análise</button>
                                 </form>
                             </span>
                         </div>
