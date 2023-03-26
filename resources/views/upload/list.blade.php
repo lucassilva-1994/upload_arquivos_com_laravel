@@ -52,6 +52,26 @@
                                 @endif
                             </span>
                         </div>
+                        <div class="row">
+                            <span class="col-sm-6 list-inline">
+                                <strong class="list-inline-item">Avaliado por:</strong> Sem nome
+                            </span>
+                            <span class="col-sm-6 list-inline">
+                                <strong class="list-inline-item">Ações: </strong>
+                                <form action="{{ route('upload.delete', $upload->id) }}" method="post" class="list-inline-item">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                                </form>
+                                <form  action="{{ route('upload.updatestatus', $upload->id) }}" method="post" class="list-inline-item">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-primary btn-sm"
+                                    name="status" value="PENDENTE"
+                                        {{ $upload->status == "APROVADO" || $upload->status == "PENDENTE" ? "disabled" : "" }}>Reenviar para analise</button>
+                                </form>
+                            </span>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <div class="row">

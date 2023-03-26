@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UploadRequest;
 use Illuminate\Http\Request;
 use App\Models\Upload;
+use Illuminate\Support\Facades\Storage;
 
 class UploadsController extends Controller
 {
     //Listar todos os documentos
     public function all(){
         $uploads = Upload::where('user_id','!=',session('id_user'))
+        ->orderByDesc('status')
         ->orderByDesc('id')
         ->get();
         return view('upload.all', compact('uploads'));
@@ -49,5 +51,15 @@ class UploadsController extends Controller
             return redirect()->back()->with('success','Atualizado com sucesso.');
         }
         return redirect()->back()->with('error','Falha ao atualizar registro.');
+    }
+
+    public function delete($id){
+        $upload = Upload::find($id);
+        if($upload){
+            Storage::delete($upload->path);
+            $upload->delete($id);
+            return redirect()->back()->with('success','Registro excluido com sucesso.');
+        }
+        return redirect()->back()->with('error', 'Falha ao remover registro.');
     }
 }
