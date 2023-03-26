@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create($this->_table, function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('title',100)->nullable();
+            $table->string('title',30)->nullable();
             $table->string('name',100);
             $table->string('path',100);
             $table->enum('status',['APROVADO','REJEITADO','PENDENTE'])->default('PENDENTE');

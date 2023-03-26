@@ -13,8 +13,8 @@ class UploadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'nullable|min:3|max:100',
-            "files" => 'required|mimes:png,jpg,jpeg,pdf|max:300'
+            'title' => 'nullable|min:3|max:30',
+            "files" => 'required'
         ];
     }
 
@@ -23,9 +23,7 @@ class UploadRequest extends FormRequest
         return [
             'title.min' => 'O titulo deve ter no mínimo :min caracteres.',
             'title.max' => 'O titulo não pode ter mais de :max caracteres.',
-            'files.required' => 'Selecione o arquivo.',
-            'files.mimes' => 'Tipo de arquivo não suportado.',
-            'files.max' => 'Tamanho máximo permitido.'
+            'files.required' => 'Selecione o arquivo.'
         ];
     }
 }

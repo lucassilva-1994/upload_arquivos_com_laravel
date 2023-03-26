@@ -73,7 +73,7 @@
                         </h5>
                     </div>
                     <div class="card-footer text-end">
-                        <span>{{ date('d/m/Y H:i:s') }}</span>
+                        <span><strong>Última atualização em </strong> {{ date('d/m/Y H:i:s') }}</span>
                     </div>
                 </div>
             @endif
