@@ -25,7 +25,7 @@
                     {{ session('error') }}
                 </div>
             @endif
-            <h3>Seus Arquivos</h3>
+            <h3>Seus arquivos</h3>
             @foreach ($files as $file)
                 <div class="card mb-3">
                     <div class="card-header">
@@ -36,10 +36,12 @@
                             <span class="col-sm-12"><strong>N° do registro: </strong>{{ $file->id }}</span>
                         </div>
                         <div class="row">
+                            @if ($file->analist_name)
                             <span class="col-sm-12 col-md-6 col-lg-6 mt-2 list-inline">
                                 <strong class="list-inline-item">Analisado por:</strong>
-                                {{ $file->analist_name == '' ? 'Sem análise.' : $file->analist_name }}
+                                {{ $file->analist_name }}
                             </span>
+                            @endif
                             <span class="col-sm-12 col-md-6 col-lg-6 mt-2">
                                 <strong>Status: </strong>
                                 @if ($file->status == 'PENDENTE')
@@ -55,9 +57,9 @@
                             <span class="col-sm-12 col-md-6 col-lg-6 mt-2">
                                 <strong>Arquivo:</strong>
                                 <a href="{{ url('storage/' . $file->path) }}" target="_blank"
-                                    class="btn btn-primary btn-sm text-decoration-none">Ver arquivo</a>
+                                    class="btn btn-primary btn-sm text-decoration-none"><i class="bi bi-eye-fill"></i> Visualizar</a>
                                 <a href="{{ route('file.download', $file->id) }}"
-                                    class="btn btn-secondary btn-sm text-decoration-none">Download</a>
+                                    class="btn btn-secondary btn-sm text-decoration-none"><i class="bi bi-file-arrow-down-fill"></i> Baixar</a>
                             </span>
                             <span class="col-sm-12 col-md-6 col-lg-6 list-inline mt-2">
                                 <strong class="list-inline-item">Ações: </strong>
@@ -65,7 +67,7 @@
                                     class="list-inline-item">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i> Excluir</button>
                                 </form>
                                 <form action="{{ route('file.updatestatus', $file->id) }}" method="post"
                                     class="list-inline-item">
@@ -73,8 +75,9 @@
                                     @method('put')
                                     <input type="hidden" name="analist_name" value="" />
                                     <button class="btn btn-primary btn-sm" name="status" value="PENDENTE"
-                                        {{ $file->status == 'APROVADO' || $file->status == 'PENDENTE' ? 'disabled' : '' }}>Reenviar
-                                        para análise</button>
+                                        {{ $file->status == 'APROVADO' || $file->status == 'PENDENTE' ? 'disabled' : '' }}>
+                                        <i class="bi bi-arrow-clockwise"></i> Reenviar para análise
+                                    </button>
                                 </form>
                             </span>
                         </div>

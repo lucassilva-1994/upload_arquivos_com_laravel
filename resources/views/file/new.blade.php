@@ -1,5 +1,4 @@
 @extends('file.layout')
-
 @section('title', 'Adicionar arquivos')
 @section('content')
     <div class="row justify-content-md-center">
@@ -39,10 +38,10 @@
                 <div class="mb-3 mt-3">
                     <div class="row">
                         <div class="col-sm-6 mb-3 d-grid">
-                            <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Salvar</button>
+                            <button type="submit" class="btn btn-success"><i class="bi bi-send-fill"></i> Enviar</button>
                         </div>
                         <div class="col-sm-6 mb-3 d-grid">
-                            <a class="btn btn-outline-danger" href="{{ route('file.list') }}"><i class="bi bi-reply"></i>
+                            <a class="btn btn-secondary" href="{{ route('file.list') }}"><i class="bi bi-reply-fill"></i>
                                 Voltar</a>
                         </div>
                     </div>

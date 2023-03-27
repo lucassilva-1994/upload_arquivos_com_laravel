@@ -1,7 +1,7 @@
 @extends('user.layout')
 @section('title', 'Entrar')
 @section('content')
-    <h2 class="text-center mb-3">Entrar</h2>
+@section('header','Entrar')
     <form action="{{ route('auth') }}" method="POST">
         @csrf
         <div class="mb-2">
@@ -23,10 +23,10 @@
         <div class="mb-3 mt-2 ">
             <div class="row">
                 <div class="col-sm-6 mb-2 d-grid">
-                    <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Autenticar</button>
+                    <button type="submit" class="btn btn-success"><i class="bi bi-person-check-fill"></i> Autenticar</button>
                 </div>
                 <div class="col-sm-6 mb-2 d-grid">
-                    <a class="btn btn-outline-primary" href="{{ route('signup') }}"><i class="bi bi-plus"></i> Cadastrar-se</a>
+                    <a class="btn btn-primary" href="{{ route('signup') }}"><i class="bi bi-person-plus-fill"></i> Cadastrar-se</a>
                 </div>
             </div>
         </div>

@@ -7,11 +7,11 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
         <title>@yield('title','Usuário')</title>
     </head>
-    <body>
+    <body class="bg-light">
         <div class="container mt-5">
             <div class="row justify-content-md-center">
                 <div class="col-sm-12 col-md-6 col-lg-4 rounded" style="margin-top: 50px; border-radius: 2;">
-                    <div class="">
+                    <h1 class="text-center mb-3">@yield("header")</h1>
                         @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -33,7 +33,6 @@
                         </div>
                         @endif
                         @yield("content")
-                    </div>
                 </div>
             </div>
         </div>

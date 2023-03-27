@@ -1,7 +1,7 @@
 @extends('user.layout')
 @section('title', 'Cadastro')
 @section('content')
-    <h2 class="text-center mb-3">Cadastro</h2>
+@section('header','Cadastro')
     <form action="{{ route('create') }}" method="POST">
         @csrf
         <div class="mb-2">
@@ -33,10 +33,10 @@
         <div class="mb-3 mt-2 ">
             <div class="row">
                 <div class="col-sm-6 mb-2 d-grid">
-                    <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Salvar</button>
+                    <button type="submit" class="btn btn-success"><i class="bi bi-send-fill"></i> Enviar</button>
                 </div>
                 <div class="col-sm-6 mb-2 d-grid">
-                    <a class="btn btn-outline-danger" href="{{ route('signin') }}"><i class="bi bi-reply"></i> Voltar</a>
+                    <a class="btn btn-secondary" href="{{ route('signin') }}"><i class="bi bi-reply-fill"></i> Voltar</a>
                 </div>
             </div>
         </div>

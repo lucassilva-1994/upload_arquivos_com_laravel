@@ -44,9 +44,9 @@
                             <span class="col-sm-12 col-md-6 col-lg-6 mt-2">
                                 <strong>Arquivo:</strong>
                                 <a href="{{ url('storage/' . $file->path) }}" target="_blank"
-                                    class="btn btn-primary btn-sm text-decoration-none">Ver arquivo</a>
+                                    class="btn btn-primary btn-sm text-decoration-none"><i class="bi bi-eye-fill"></i> Visualizar</a>
                                 <a href="{{ route('file.download', $file->id) }}"
-                                    class="btn btn-secondary btn-sm text-decoration-none">Download</a>
+                                    class="btn btn-secondary btn-sm text-decoration-none"><i class="bi bi-file-arrow-down-fill"></i> Baixar</a>
                             </span>
                             <span class="col-sm-12 col-md-6 col-lg-6 list-inline mt-2">
                                 <strong>{{ $file->status == 'PENDENTE' ? '' : 'Status:' }} </strong>
@@ -57,9 +57,9 @@
                                         @method('put')
                                         <input type="hidden" name="analist_name" value="{{ session('name') }}"/>
                                         <button type="submit" name="status" value="APROVADO"
-                                            class="btn btn-success btn-sm">Aprovar</button>
+                                            class="btn btn-success btn-sm"><i class="bi bi-check2-circle"></i> Aprovar</button>
                                         <button type="submit" name="status" value="REJEITADO"
-                                            class="btn btn-danger btn-sm">Rejeitar</button>
+                                            class="btn btn-danger btn-sm"><i class="bi bi-x-circle"></i> Rejeitar</button>
                                     </form>
                                 @elseif($file->status == 'APROVADO')
                                     <span class="text-success">APROVADO</span>
