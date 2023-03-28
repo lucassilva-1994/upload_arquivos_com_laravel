@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('name',100);
             $table->string('email',100)->unique();
             $table->string('password',100);
+            $table->integer('qtd_access')->default(0);
             $table->timestamps();
         });
     }

@@ -25,7 +25,12 @@ class UsersController extends Controller
         $credentials = ['email' => $request->email,'password' => $request->password];
         if(Auth::attempt($credentials)){
             $user = User::select('*')->where(['email'=>$request->email])->first();
-            session()->put(['id_user'=> $user->id,'name'=>$user->name,'email'=>$user->email]);
+            $user->increment('qtd_access',1);
+            session()->put([
+                'id_user'=> $user->id,
+                'name'=>$user->name,
+                'email'=>$user->email
+            ]);
             return to_route('file.all');
         }
         return to_route('signin')->with('error','Falha ao autenticar usuário.');

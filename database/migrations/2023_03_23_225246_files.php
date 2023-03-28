@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('path',100);
             $table->string('analist_name',100)->nullable();
             $table->enum('status',['APROVADO','REJEITADO','PENDENTE'])->default('PENDENTE');
+            $table->integer('qtd_download')->default(0);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

@@ -47,6 +47,7 @@ class File extends Model
     {
         $file = File::find($id);
         if ($file) {
+            $file->increment('qtd_download',1);
             return Storage::download($file->path, $file->name, []);
         }
     }
